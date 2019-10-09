@@ -4,10 +4,13 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
   
-    <title>小陈的开始之路 | Mark&#39;s learning</title>
+    <title>多次背包 | Mark&#39;s learning</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Mark">
+    
+    <meta name="description" content="多次背包问题：给定 n 种物品和一个背包。第 i 种物品 的价值是 Wi ，其体积为 Vi，数量是 Ki件，背包的容量为 C。可以任意选择装入背包中的物品，求装入背包中物品的最大总价值。
+##方法一：可以把此物品拆分成Ki个只能用一次的物品，直接套用 0-1 背包问题的经典动规实现，但是效率太低了。">
     
     
     
@@ -63,15 +66,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2019/09/22/小陈的开始之路/" title="小陈的开始之路" itemprop="url">小陈的开始之路</a>
+      <a href="/2019/09/22/多次背包/" title="多次背包" itemprop="url">多次背包</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://www.markchenblog.top" title="Mark">Mark</a>
     </p>
   <p class="article-time">
-    <time datetime="2019-09-22T15:22:32.000Z" itemprop="datePublished">2019-09-22</time>
-    更新日期:<time datetime="2019-10-09T12:26:12.364Z" itemprop="dateModified">2019-10-09</time>
+    <time datetime="2019-09-22T15:22:32.488Z" itemprop="datePublished">2019-09-22</time>
+    更新日期:<time datetime="2019-10-09T12:36:48.517Z" itemprop="dateModified">2019-10-09</time>
     
   </p>
 </header>
@@ -83,21 +86,21 @@
 		
 		</div>
 		
-		  
+		<p>多次背包问题：给定 n 种物品和一个背包。第 i 种物品 的价值是 Wi ，其体积<br>为 Vi，数量是 Ki件，背包的容量为 C。可以任意选择装入背包中的物品，求装入背<br>包中物品的最大总价值。</p>
+<p>##方法一：<br>可以把此物品拆分成Ki个只能用一次的物品，直接套用 0-1 背包问题的经典动规实现，<br>但是效率太低了。</p>
+<p>##方法二：<br>拆分成体积和价值分别为原来1, 2 , 4..   2^m,    Ki-2^m 倍的几个物品，用0-1背包求解。<br>时间复杂度为O(C*∑([log2Ki]))。</p>
+<p>##方法三(重点):<br>拆分成体积和价值分别为原来1, 2 , 4..   2^m,    Ki-2^m 倍的几个物品，用0-1背包求解。<br> 时间复杂度为O(C*∑([log2Ki]))<br>j             0 1 2 3 4 5 6 7 8 ……<br>j mod v   0 1 2 0 1 2 0 1 2 …… </p>
+<p>我们可以把每一份分开处理，假设余数为 d。<br>编号j         0     1        2            3           4             5         ……<br>对应体积 d    d+v    d+2<em>v     d+3</em>v    d+4<em>v      d+5</em>v    ……<br>现在看到分组以后，编号 j 可以从 j-k 到 j-1 中的任意一个编号转移而来（因为相邻的体积正好相差 v）<br> ，这看上去已经和区间最大值有点相似了。但是注意到由于体积不一样，显然体积大的价值也会大于等<br>于体积小的，直接比较是没有意义的，所以还需要把价值修正到同一体积的基础上。比如都退化到 d，也<br>就是说用 F[j<em>v+d]- j</em>w来代替原来的价值进入队列。<br>已知单调队列的效率是 O(n)，那么加上单调队列优化以后的多次背包，<br>效率就是 O(n*C)了。 </p>
+  
 	</div>
 		<footer class="article-footer clearfix">
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/排序算法/">排序算法</a>
-  </div>
 
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://www.markchenblog.top/2019/09/22/小陈的开始之路/" data-title="小陈的开始之路 | Mark&#39;s learning" data-tsina="" class="share clearfix">
+  <div data-url="http://www.markchenblog.top/2019/09/22/多次背包/" data-title="多次背包 | Mark&#39;s learning" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -137,7 +140,7 @@
 	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
-			<li><a href="/tags/排序算法/" title="排序算法">排序算法<sup>1</sup></a></li>
+			<li><a href="/tags/排序算法/" title="排序算法">排序算法<sup>0</sup></a></li>
 		
 		</ul>
 </div>
