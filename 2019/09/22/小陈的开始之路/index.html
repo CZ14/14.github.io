@@ -9,6 +9,10 @@
     
     <meta name="author" content="Mark">
     
+    <meta name="description" content="‘’’void swap(inta,intb){    int t=a;    *a=b;    *b=t;}int  quickloc(int *a,int l,int r);
+void quickSort(int *a,int l,int r);//快速排序
+void bubbleSort(in">
+    
     
     
     
@@ -71,7 +75,7 @@
     </p>
   <p class="article-time">
     <time datetime="2019-09-22T15:22:32.000Z" itemprop="datePublished">2019-09-22</time>
-    更新日期:<time datetime="2019-09-22T15:22:32.489Z" itemprop="dateModified">2019-09-22</time>
+    更新日期:<time datetime="2019-10-09T12:07:11.559Z" itemprop="dateModified">2019-10-09</time>
     
   </p>
 </header>
@@ -83,7 +87,68 @@
 		
 		</div>
 		
-		  
+		<p>‘’’<br>void swap(int<em>a,int</em>b)<br>{<br>    int t=<em>a;<br>    *a=</em>b;<br>    *b=t;<br>}<br>int  quickloc(int *a,int l,int r);</p>
+<p>void quickSort(int *a,int l,int r);//快速排序</p>
+<p>void bubbleSort(int*a,int n);//冒泡排序</p>
+<p>void selectionSort(int*a,int n);//简单选择排序</p>
+<p>void insertionSort(int*a,int n);//直接插入排序</p>
+<p>void mergeSort(int*a,int l,int r);//归并排序</p>
+<p>int* sortArray(int* nums, int numsSize, int* returnSize){</p>
+<pre><code>int *p=(int *)malloc(sizeof(int)*(numsSize));
+*returnSize=numsSize;
+
+memcpy(p,nums,numsSize*sizeof(int));
+
+//bubbleSort(p,numsSize); </code></pre><p>   // insertionSort(p,numsSize);<br>    //selectionSort(p,numsSize); </p>
+<pre><code>mergeSort(p,0,numsSize-1);
+return p;</code></pre><p>}</p>
+<p>void merge(int <em>a,int l,int m,int r)<br>{   int n=r-l+1;<br>    //a[l-m],a[m+1,r]<br>    int k=0;<br>    int i=l;<br>    int j=m+1;<br> int *p=(int *)malloc(sizeof(int)</em>n);</p>
+<pre><code>while(i&lt;=m&amp;&amp;j&lt;=r)
+{
+    if(a[i]&lt;=a[j])
+    {
+        p[k]=a[i];
+        i++;
+        k++;
+    }
+    else
+    {
+        p[k]=a[j];
+        k++;
+        j++;
+    }
+}
+ while(i&lt;=m)
+ {
+     p[k]=a[i];
+     k++;
+     i++;
+ }
+ while(j&lt;=r)
+ {
+     p[k]=a[j];
+     k++;
+     j++;
+ }
+ for(int i=0;i&lt;k;i++)
+{
+    a[i+l]=p[i]; 
+}</code></pre><p>   free(p);<br>}<br>void mergeSort(int *a,int l,int r)<br>{<br>    if(l&gt;=r) return;<br>    int m=l+(r-l)/2;<br>    //1<br>    mergeSort(a,l,m);<br>    //2<br>    mergeSort(a,m+1,r);<br>    //3<br>    merge(a,l,m,r);<br>}</p>
+<p>void bubbleSort(int*a,int n){<br>   for(int i=1;i&lt;n;i++)<br>       for(int j=0;j&lt;n-i;++j)<br>           if(a[j+1]&lt;a[j])<br>               swap(&amp;a[j],&amp;a[j+1]);<br>}</p>
+<p>void selectionSort(int*a,int n){<br>    for(int i=0;i&lt;n;i++)<br>        for(int j=i+1;j&lt;n;j++)<br>            if(a[i]&gt;a[j])<br>                swap(a[i++],a[j++]);<br>}</p>
+<p>void insertionSort(int*a,int n)<br>{<br>   for(int i=1;i&lt;n;++i)<br>   {<br>       int t=a[i],j;<br>       for(j=i-1;j&gt;=0;j–)<br>           if(a[j]&gt;t)<br>               a[j+1]=a[j];<br>            else break;<br>       a[j+1]=t;<br>   }<br>}</p>
+<p>int quickloc(int *a,int l,int r)<br>{<br>    int i=l;<br>    for(int j=l;j&lt;r;j++){</p>
+<pre><code>    if(a[j]&lt;a[r])
+    {
+        if(i!=j)
+        swap(&amp;a[j],&amp;a[i]);
+        i+=1;
+    }
+}
+swap(&amp;a[i],&amp;a[r]);
+return i;</code></pre><p>}<br>void quickSort(int *a,int l,int r)<br>{<br>    if(l&lt;r)<br>    {<br>        int mid=quickloc(a,l,r);<br>        quickSort(a,l,mid-1);<br>        quickSort(a,mid+1,r);<br>    }<br>}</p>
+<p>‘’’</p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 
